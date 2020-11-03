@@ -1,0 +1,6 @@
+@import "./styles/common";
+
+.root {
+  @include fill-container;
+  padding-top: 120px;
+}

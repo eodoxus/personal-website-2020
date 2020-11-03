@@ -1,0 +1,33 @@
+// Colors
+$color-app-header: #2c3e50;
+$color-app-background: #000;
+$color-app-background--inverse: #fff;
+$color-buttons: #fbe6a8;
+$color-buttons--hover: #fbeab8;
+$color-buttons--pressed: #fbe196;
+$color-font-inverse: #fff;
+$color-footer: #ccc;
+$color-error--border: red;
+$color-error--background: gb(250, 156, 156);
+
+// Fonts
+$font-family--default: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family--code: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+$font-size--default: 14px;
+$font-weight--bold: 500;
+
+// Layout Dimensions
+$dimension-footer--height: 40px;
+$dimension-header--height: 76px;
+
+// Spacing
+$gutter-sm: 20px;
+
+@mixin fill-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
