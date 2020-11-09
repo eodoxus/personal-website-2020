@@ -1,31 +1,16 @@
 import path from "path";
 
+import getRoutes from "./src/routes";
+
 export default {
   entry: path.join(__dirname, "src", "index.jsx"),
-  getRoutes: async () => {
-    const projects = [];
-    return [
-      {
-        path: "/",
-        getData: () => ({
-          projects,
-        }),
-      },
-      {
-        path: "/projects",
-        getData: () => ({
-          projects,
-        }),
-        children: projects.map((project) => ({
-          path: `/projects/${project.id}`,
-          template: "src/containers/Project",
-          getData: () => ({
-            post,
-          }),
-        })),
-      },
-    ];
-  },
+  inlineCss: true,
+  getRoutes,
+  getSiteData: () => ({
+    codewarrior: {
+      url: "https://codewarrior.jaygordo.com/",
+    },
+  }),
   plugins: [
     [
       "react-static-plugin-sass",

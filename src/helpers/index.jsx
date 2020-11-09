@@ -2,6 +2,6 @@ export const isBrowser = () => {
   return typeof window !== "undefined";
 };
 
-export const base64Decode = () => {
-  return isBrowser() ? atob : (str) => str;
+export const base64Decode = (str) => {
+  return isBrowser() ? atob(str) : (str) => str;
 };

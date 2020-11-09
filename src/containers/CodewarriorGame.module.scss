@@ -1,0 +1,9 @@
+@import "../styles/common";
+
+.gameFrame {
+  width: 100vw;
+  height: calc(100vh - #{$chrome-height});
+  border: none;
+  margin: 0;
+  padding: 0;
+}

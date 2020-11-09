@@ -5,7 +5,7 @@ import { LinkButton } from "../forms/controls/Buttons";
 
 import styles from "./LayoutHeader.module.scss";
 
-const LayoutHeader = ({ email, name, phone, portrait, slogan, url }) => {
+export default ({ email, name, phone, portrait, slogan, url }) => {
   return (
     <header className={cx(styles.header, "header")}>
       <div className={styles.selfie}>
@@ -53,5 +53,3 @@ const LayoutHeader = ({ email, name, phone, portrait, slogan, url }) => {
     </header>
   );
 };
-
-export default LayoutHeader;

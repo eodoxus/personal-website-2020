@@ -1,9 +1,11 @@
 import React from "react";
-import { useRouteData } from "react-static";
 
-import ProjectList from "../components/ProjectList";
+import Game from "../containers/CodewarriorGame";
 
 export default () => {
-  const { projects } = useRouteData();
-  return <ProjectList projects={projects} />;
+  return (
+    <div>
+      <Game />
+    </div>
+  );
 };

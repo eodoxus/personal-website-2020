@@ -1,15 +1,19 @@
 import React from "react";
 import { useRouteData } from "react-static";
 
-import ProjectList from "../components/ProjectList";
-
 export default () => {
   const { projects } = useRouteData();
 
   return (
     <div>
       Projects
-      <ProjectList projects={projects} />
+      <ul>
+        {projects.map((project) => (
+          <li key={project.id}>
+            <Link to={`/projects/${project.id}/`}>{project.title}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

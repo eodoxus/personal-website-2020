@@ -20,6 +20,7 @@ $font-weight--bold: 500;
 // Layout Dimensions
 $dimension-footer--height: 40px;
 $dimension-header--height: 76px;
+$chrome-height: $dimension-header--height + $dimension-footer--height;
 
 // Spacing
 $gutter-sm: 20px;

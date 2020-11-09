@@ -3,8 +3,6 @@ import cx from "classnames";
 
 import styles from "./LayoutFooter.module.scss";
 
-const LayoutFooter = ({ copy, ...props }) => {
+export default ({ copy }) => {
   return <footer className={cx(styles.footer, "footer")}>{copy}</footer>;
 };
-
-export default LayoutFooter;
