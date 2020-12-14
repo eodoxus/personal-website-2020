@@ -2,18 +2,21 @@
   "name": "react-static-example-typescript",
   "private": true,
   "scripts": {
-    "start": "react-static start",
-    "stage": "react-static build --staging",
     "build": "react-static build",
     "bundle": "react-static bundle",
     "export": "react-static export",
-    "serve": "serve dist -p 3000 -s"
+    "start": "react-static start",
+    "serve": "serve dist -p 3000 -s",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",
+    "prismic-dom": "^2.2.4",
+    "prismic-javascript": "^3.0.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-static": "^7.2.0",
@@ -29,9 +32,13 @@
     "@types/react-dom": "^16.8.5",
     "@types/react-hot-loader": "^4.1.0",
     "@types/webpack-env": "^1.14.0",
+    "jest": "^26.6.3",
     "react-hot-loader": "^4.12.11",
     "react-static-plugin-sass": "^7.3.0",
     "serve": "^11.1.0",
     "typescript": "^3.5.3"
+  },
+  "jest": {
+    "verbose": true
   }
 }
