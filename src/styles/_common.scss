@@ -19,6 +19,7 @@ $font-family--code: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 $font-size--default: 14px;
 $font-size--nav: 12px;
+$font-size--card-title: 18px;
 $font-weight--bold: 500;
 
 // Layout Dimensions
@@ -27,6 +28,7 @@ $dimension-header--height: 67px;
 $chrome-height: $dimension-header--height + $dimension-footer--height;
 
 // Spacing
+$gutter-xs: 10px;
 $gutter-sm: 20px;
 $gutter-med: 40px;
 

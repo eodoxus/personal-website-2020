@@ -1,19 +1,18 @@
 import React from "react";
-import { Link } from "@reach/router";
 import { useRouteData } from "react-static";
 
 import SlideInOverlay from "../containers/SlideInOverlay/SlideInOverlay";
+import ProjectTile from "../components/tiles/ProjectTile/ProjectTile";
 
 export default () => {
   const { projects } = useRouteData();
 
   return (
     <SlideInOverlay>
-      Projects
-      <ul>
+      <ul class="tile-list">
         {projects.map((project) => (
           <li key={project.id}>
-            <Link to={`/projects/${project.id}/`}>{project.title}</Link>
+            <ProjectTile project={project} />
           </li>
         ))}
       </ul>

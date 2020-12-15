@@ -53,6 +53,7 @@ async function attachImages(document) {
       .filter((imageDoc) => !!imageDoc)
       .map((imageDoc) => {
         return {
+          tags: imageDoc.tags,
           title: get(imageDoc, "data.title[0].text", "Untitled"),
           url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
         };

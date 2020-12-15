@@ -19,7 +19,6 @@ async function getProjectsRouteData() {
   return {
     getData: () => ({ projects }),
     children: projects.map((project) => {
-      console.log("route project", `${project.id}`);
       return {
         path: project.id,
         template: "src/containers/Project/Project",
