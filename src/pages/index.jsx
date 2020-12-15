@@ -1,6 +1,6 @@
 import React from "react";
 
-import Game from "../containers/CodewarriorGame";
+import Game from "../containers/CodewarriorGame/CodewarriorGame";
 
 export default () => {
   return (

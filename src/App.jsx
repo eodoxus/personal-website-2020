@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
-import { Link, Router } from "@reach/router";
+import { Router } from "@reach/router";
 
 import LayoutHeader from "./components/layout/LayoutHeader";
 import LayoutFooter from "./components/layout/LayoutFooter";

@@ -1,0 +1,10 @@
+@import "../styles/common";
+
+.gameFrame {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+  padding: 0;
+  margin-top: -$dimension-header--height;
+  background-color: $color-app-background;
+}

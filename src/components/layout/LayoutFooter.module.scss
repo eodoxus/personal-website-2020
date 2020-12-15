@@ -1,16 +1,17 @@
 @import "../../styles/common";
 
 .footer {
+  @include nav;
+
+  text-transform: inherit;
   position: fixed;
   z-index: 9999;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: $dimension-footer--height;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $color-footer;
-  border-top: 1px solid #999;
-  color: $color-app-header;
+  border-top: $border-chrome;
 }

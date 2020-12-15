@@ -6,24 +6,34 @@ $color-buttons: #fbe6a8;
 $color-buttons--hover: #fbeab8;
 $color-buttons--pressed: #fbe196;
 $color-font-inverse: #fff;
-$color-footer: #ccc;
+$color-chrome: #ccc;
+$color-chrome--border: #999;
+$color-chrome--border-hover: #afafaf;
 $color-error--border: red;
-$color-error--background: gb(250, 156, 156);
+$color-error--background: rgb(250, 156, 156);
+$color-nav--hover: #dbdbdb;
 
 // Fonts
 $font-family--default: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-family--code: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 $font-size--default: 14px;
+$font-size--nav: 12px;
 $font-weight--bold: 500;
 
 // Layout Dimensions
 $dimension-footer--height: 40px;
-$dimension-header--height: 76px;
+$dimension-header--height: 67px;
 $chrome-height: $dimension-header--height + $dimension-footer--height;
 
 // Spacing
 $gutter-sm: 20px;
+$gutter-med: 40px;
+
+// Borders
+$border-chrome: 1px solid $color-chrome--border;
+$border-chrome--hover: 1px solid $color-chrome--border-hover;
+$border-chrome--hidden: 1px solid $color-chrome;
 
 @mixin fill-container {
   position: absolute;
@@ -31,4 +41,11 @@ $gutter-sm: 20px;
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+@mixin nav {
+  background-color: $color-chrome;
+  color: $color-app-header;
+  font-size: $font-size--nav;
+  text-transform: uppercase;
 }

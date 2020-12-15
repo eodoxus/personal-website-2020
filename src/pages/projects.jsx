@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "@reach/router";
 import { useRouteData } from "react-static";
+
+import SlideInOverlay from "../containers/SlideInOverlay/SlideInOverlay";
 
 export default () => {
   const { projects } = useRouteData();
 
   return (
-    <div>
+    <SlideInOverlay>
       Projects
       <ul>
         {projects.map((project) => (
@@ -14,6 +17,6 @@ export default () => {
           </li>
         ))}
       </ul>
-    </div>
+    </SlideInOverlay>
   );
 };
