@@ -8,7 +8,7 @@ export default ({ title, image }) => {
       className={styles.container}
       style={{ backgroundImage: `url('${image}')` }}
     >
-      <div className={styles.background}></div>
+      <div className={styles.background} />
       <div className={styles.title}>{title}</div>
     </div>
   );

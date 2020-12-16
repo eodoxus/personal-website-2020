@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Root, Routes, addPrefetchExcludes } from "react-static";
 import { Router } from "@reach/router";
 
-import LayoutHeader from "./components/layout/LayoutHeader";
-import LayoutFooter from "./components/layout/LayoutFooter";
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
 import Loader from "./components/Loader";
+import Nav from "./components/layout/Nav/Nav";
 import { base64Decode } from "./helpers";
 
 import "./styles/global.scss";
@@ -18,7 +19,7 @@ export default () => {
   return (
     <Root>
       <div className={styles.root}>
-        <LayoutHeader
+        <Header
           email={base64Decode("amFzb24ubS5nb3Jkb25AZ21haWwuY29t")}
           name={name}
           phone={base64Decode("KzEgNzE0LTYxNC04MTQ0")}
@@ -27,6 +28,7 @@ export default () => {
           url="/"
           hide={hideChrome}
         />
+        <Nav />
         <div className={styles.content}>
           <React.Suspense fallback={<Loader />}>
             <Router>
@@ -34,7 +36,7 @@ export default () => {
             </Router>
           </React.Suspense>
         </div>
-        <LayoutFooter copy={`© ${year} by ${name}`} hide={hideChrome} />
+        <Footer copy={`© ${year} by ${name}`} hide={hideChrome} />
       </div>
     </Root>
   );

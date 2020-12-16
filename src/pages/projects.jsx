@@ -9,7 +9,7 @@ export default () => {
 
   return (
     <SlideInOverlay>
-      <ul class="tile-list">
+      <ul className="tile-list">
         {projects.map((project) => (
           <li key={project.id}>
             <ProjectTile project={project} />

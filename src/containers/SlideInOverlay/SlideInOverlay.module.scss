@@ -1,4 +1,4 @@
-@import "../../styles/common";
+@import "styles/common";
 
 $animation-duration: 0.35s;
 
@@ -16,31 +16,6 @@ $animation-duration: 0.35s;
   background-color: $color-app-background--inverse;
 }
 
-.close-button {
-  $size: 30px;
-
-  animation-duration: $animation-duration;
-  animation-name: close-button-slide-in;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: -$gutter-med + 5;
-  left: $gutter-sm;
-  border: $border-chrome;
-  border-radius: 2px;
-  border-bottom: 0;
-  width: $gutter-med;
-  height: $gutter-med - 5;
-  font-size: 20px;
-  z-index: 9999;
-  background-color: $color-app-background--inverse;
-
-  i {
-    color: $color-app-header;
-  }
-}
-
 .slide-in {
   animation-duration: $animation-duration;
   animation-name: slide-in;
@@ -56,15 +31,5 @@ $animation-duration: 0.35s;
 
   to {
     margin-left: 0%;
-  }
-}
-
-@keyframes close-button-slide-in {
-  from {
-    left: 100vw;
-  }
-
-  to {
-    left: $gutter-sm;
   }
 }

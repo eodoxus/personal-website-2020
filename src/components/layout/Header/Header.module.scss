@@ -1,4 +1,4 @@
-@import "../../styles/common";
+@import "styles/common";
 
 $header-element-spacing: 20px;
 $avatar-size: 75px;
@@ -86,7 +86,7 @@ $avatar-size: 75px;
   a:hover {
     background-color: $color-buttons--hover;
     border: 2px solid #eacb6e;
-    padding: 4px 9px;
+    padding: 9px 14px;
   }
 
   a:active:hover {
@@ -119,8 +119,7 @@ $avatar-size: 75px;
     }
   }
 
-  .contactInfo,
-  .nav-right {
+  .contactInfo {
     display: none;
   }
 
@@ -132,45 +131,5 @@ $avatar-size: 75px;
 
   .nav .links {
     margin-right: $gutter-sm;
-  }
-}
-
-.nav {
-  @include nav;
-
-  @mixin highlighted {
-    background-color: $color-nav--hover;
-    border-left: $border-chrome--hover;
-    border-right: $border-chrome--hover;
-  }
-
-  position: relative;
-  display: flex;
-  align-items: center;
-  border-bottom: $border-chrome;
-
-  a {
-    color: $color-app-header;
-    padding: 5px 10px;
-    border-left: $border-chrome--hidden;
-    border-right: $border-chrome--hidden;
-
-    &:hover {
-      @include highlighted;
-    }
-  }
-
-  div {
-    flex-grow: 1;
-    width: 100%;
-  }
-
-  .active {
-    @include highlighted;
-  }
-
-  .links {
-    display: flex;
-    justify-content: flex-end;
   }
 }

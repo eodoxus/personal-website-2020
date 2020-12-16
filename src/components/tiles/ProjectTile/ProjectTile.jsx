@@ -10,10 +10,9 @@ export default ({ project }) => {
     image = images[0];
   }
   const { url } = image;
-  let transformedImageUrl = `${url}&w=1200`;
   return (
     <Link to={`/projects/${id}/`}>
-      <BaseTile title={title} image={transformedImageUrl} />
+      <BaseTile title={title} image={`${url}&w=1200`} />
     </Link>
   );
 };
