@@ -18,12 +18,10 @@ async function getProjectsRouteData() {
   const projects = await getProjects();
   return {
     getData: () => ({ projects }),
-    children: projects.map((project) => {
-      return {
-        path: project.id,
-        template: "src/containers/Project/Project",
-        getData: () => ({ project }),
-      };
-    }),
+    children: projects.map((project) => ({
+      path: project.id,
+      template: "src/containers/Project/Project",
+      getData: () => ({ project }),
+    })),
   };
 }

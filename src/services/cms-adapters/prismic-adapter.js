@@ -22,16 +22,14 @@ export async function getProjects() {
         .filter((document) => !!get(document, "data.body"))
         .map((document) => attachImages(document))
     )
-  ).map((projectDoc) => {
-    return {
-      content: get(projectDoc, "data.content", []),
-      endDate: get(projectDoc, "data.end_date"),
-      id: projectDoc.id,
-      images: get(projectDoc, "images", []),
-      startDate: get(projectDoc, "data.start_date"),
-      title: get(projectDoc, "data.title[0].text", []),
-    };
-  });
+  ).map((projectDoc) => ({
+    content: get(projectDoc, "data.content", []),
+    endDate: get(projectDoc, "data.end_date"),
+    id: projectDoc.id,
+    images: get(projectDoc, "images", []),
+    startDate: get(projectDoc, "data.start_date"),
+    title: get(projectDoc, "data.title[0].text", []),
+  }));
 }
 
 async function attachImages(document) {
@@ -51,13 +49,11 @@ async function attachImages(document) {
     );
     document.images = imageDocs
       .filter((imageDoc) => !!imageDoc)
-      .map((imageDoc) => {
-        return {
-          tags: imageDoc.tags,
-          title: get(imageDoc, "data.title[0].text", "Untitled"),
-          url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
-        };
-      });
+      .map((imageDoc) => ({
+        tags: imageDoc.tags,
+        title: get(imageDoc, "data.title[0].text", "Untitled"),
+        url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
+      }));
   }
   return document;
 }
@@ -69,7 +65,7 @@ async function fetchDocumentsByType(type, sortField, sortDirection = "asc") {
   }
 
   const api = await getApi();
-  return await api.query(Prismic.Predicates.at("document.type", type), options);
+  return api.query(Prismic.Predicates.at("document.type", type), options);
 }
 
 async function fetchDocumentById(id) {
