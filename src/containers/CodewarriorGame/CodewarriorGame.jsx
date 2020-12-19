@@ -6,5 +6,11 @@ import styles from "./CodewarriorGame.module.scss";
 export default () => {
   const { codewarrior } = useSiteData();
 
-  return <iframe src={codewarrior.url} className={styles.gameFrame}></iframe>;
+  return (
+    <iframe
+      src={codewarrior.url}
+      className={styles.gameFrame}
+      title="Codewarrior Game"
+    />
+  );
 };

@@ -20,7 +20,9 @@ $font-family--code: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 $font-size--default: 14px;
 $font-size--nav: 12px;
 $font-size--card-title: 18px;
+$font-size--icon-button: 20px;
 $font-weight--bold: 500;
+$font-weight--x-bold: 800;
 
 // Layout Dimensions
 $dimension-footer--height: 40px;
@@ -51,3 +53,8 @@ $border-chrome--hidden: 1px solid $color-chrome;
   font-size: $font-size--nav;
   text-transform: uppercase;
 }
+
+// Z-Indexes
+$z-index--chrome: 9999;
+$z-index--nav: 10001;
+$z-index--modal: 10002;

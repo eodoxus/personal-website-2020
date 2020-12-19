@@ -3,19 +3,18 @@ import { useRouteData } from "react-static";
 
 import SlideInOverlay from "../containers/SlideInOverlay/SlideInOverlay";
 import ProjectTile from "../components/tiles/ProjectTile/ProjectTile";
+import TileList from "../components/tiles/TileList/TileList";
 
 export default () => {
   const { projects } = useRouteData();
 
   return (
     <SlideInOverlay>
-      <ul className="tile-list">
+      <TileList>
         {projects.map((project) => (
-          <li key={project.id}>
-            <ProjectTile project={project} />
-          </li>
+          <ProjectTile project={project} />
         ))}
-      </ul>
+      </TileList>
     </SlideInOverlay>
   );
 };

@@ -4,7 +4,7 @@
   @include nav;
 
   &.with-controls {
-    z-index: 10001;
+    z-index: $z-index--nav;
   }
 
   @mixin highlighted {
@@ -64,7 +64,7 @@
       left: $gutter-xs;
 
       .close-button {
-        font-size: 20px;
+        font-size: $font-size--icon-button;
 
         a {
           border: 0;

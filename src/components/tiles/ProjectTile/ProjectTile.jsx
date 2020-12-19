@@ -3,16 +3,22 @@ import { Link } from "@reach/router";
 
 import BaseTile from "../BaseTile/BaseTile";
 
+const IMAGE_WIDTH = 1200;
+
 export default ({ project }) => {
   const { id, images, title } = project;
-  let image = images.find((image) => image.tags.includes("promoted"));
-  if (!image) {
-    image = images[0];
-  }
-  const { url } = image;
   return (
     <Link to={`/projects/${id}/`}>
-      <BaseTile title={title} image={`${url}&w=1200`} />
+      <BaseTile
+        title={title}
+        image={`${getPromotedImageUrl(images)}&w=${IMAGE_WIDTH}`}
+      />
     </Link>
   );
 };
+
+function getPromotedImageUrl(images) {
+  const { url } =
+    images.find((image) => image.tags.includes("promoted")) || images[0];
+  return url;
+}

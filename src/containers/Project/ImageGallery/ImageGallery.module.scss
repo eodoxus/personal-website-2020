@@ -1,0 +1,96 @@
+@import "styles/common";
+
+$color-controls: #666;
+$color-controls--hover: #999;
+
+.modal {
+  @include fill-container;
+
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.85);
+  visibility: hidden;
+  z-index: $z-index--modal;
+
+  &.open {
+    visibility: visible;
+  }
+
+  .close-button {
+    color: $color-app-background;
+    font-size: $font-size--icon-button;
+    cursor: pointer;
+    border: 15px solid $color-app-background--inverse;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+  }
+
+  .image-frame {
+    @include fill-container;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $gutter-sm;
+
+    & > img {
+      max-height: 100%;
+      border: 2px solid $color-controls;
+    }
+  }
+
+  .arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    height: $gutter-med * 2;
+    margin-top: -$gutter-med;
+    width: $gutter-med;
+    border: 1px solid $color-controls;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-controls;
+
+    &:hover {
+      background-color: rgba(20, 20, 20, 0.6);
+      color: $color-controls--hover;
+      border-color: $color-controls--hover;
+    }
+  }
+
+  .arrow-prev {
+    left: $gutter-xs;
+  }
+
+  .arrow-next {
+    right: $gutter-xs;
+  }
+
+  @media screen and (max-aspect-ratio: 3/2) {
+    .arrow {
+      width: $gutter-med * 2;
+      height: $gutter-med;
+    }
+
+    .arrow-prev {
+      top: $gutter-med * 2;
+      left: 45%;
+      margin-left: -($gutter-med * 2);
+    }
+
+    .arrow-next {
+      top: $gutter-med * 2;
+      right: 45%;
+      margin-right: -($gutter-med * 2);
+    }
+  }
+}
