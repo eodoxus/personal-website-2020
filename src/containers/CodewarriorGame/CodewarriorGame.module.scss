@@ -8,5 +8,9 @@
   padding: 0;
   margin-top: -$dimension-header--height - $dimension-footer--height - 2;
   background-color: $color-app-background--inverse;
-  padding-top: 10%;
+  padding-top: $dimension-header--height - $dimension-footer--height + 2;
+
+  @media screen and (max-width: 640px) {
+    padding-top: 10%;
+  }
 }
