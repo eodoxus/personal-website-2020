@@ -9,6 +9,7 @@ describe("Service: CmsAdapters > PrismicAdapter", () => {
       expect(project.content.length).toBe(6);
       expect(project.endDate).toBeDefined();
       expect(project.id).toBe("X9aBvxIAACQApvBw");
+      expect(project.uid).toBe("mock-uid-01");
       expect(project.startDate).toBeDefined();
       expect(project.title).toBe("Mock Project 01");
       expect(project.images.length).toBe(2);

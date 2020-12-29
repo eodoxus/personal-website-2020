@@ -29,6 +29,7 @@ export async function getProjects() {
     images: get(projectDoc, "images", []),
     startDate: get(projectDoc, "data.start_date"),
     title: get(projectDoc, "data.title[0].text", []),
+    uid: projectDoc.uid,
   }));
 }
 

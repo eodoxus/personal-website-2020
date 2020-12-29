@@ -19,7 +19,7 @@ async function getProjectsRouteData() {
   return {
     getData: () => ({ projects }),
     children: projects.map((project) => ({
-      path: project.id,
+      path: project.uid,
       template: "src/containers/Project/Project",
       getData: () => ({ project }),
     })),

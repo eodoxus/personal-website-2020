@@ -9,6 +9,7 @@ describe("Service: CmsService", () => {
       expect(project.content.length).toBe(6);
       expect(project.endDate).toBeDefined();
       expect(project.id).toBe("X9aGahIAACIApwU5");
+      expect(project.uid).toBe("mock-uid-02");
       expect(project.startDate).toBeDefined();
       expect(project.title).toBe("Mock Project 02");
       expect(project.images.length).toBe(3);

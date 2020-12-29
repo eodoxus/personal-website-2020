@@ -6,9 +6,9 @@ import BaseTile from "../BaseTile/BaseTile";
 const IMAGE_WIDTH = 1200;
 
 export default ({ project }) => {
-  const { id, images, title } = project;
+  const { uid, images, title } = project;
   return (
-    <Link to={`/projects/${id}/`}>
+    <Link to={`/projects/${uid}/`}>
       <BaseTile
         title={title}
         image={`${getPromotedImageUrl(images)}&w=${IMAGE_WIDTH}`}

@@ -9,7 +9,7 @@ export const projects = {
   results: [
     {
       id: "X9aBvxIAACQApvBw",
-      uid: null,
+      uid: "mock-uid-01",
       type: "project",
       href:
         "https://jaygordocom.cdn.prismic.io/api/v2/documents/search?ref=X9aGbhIAACQApwVR&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22X9aBvxIAACQApvBw%22%29+%5D%5D",
@@ -97,7 +97,7 @@ export const projects = {
     },
     {
       id: "X9aGahIAACIApwU5",
-      uid: null,
+      uid: "mock-uid-02",
       type: "project",
       href:
         "https://jaygordocom.cdn.prismic.io/api/v2/documents/search?ref=X9aGbhIAACQApwVR&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22X9aGahIAACIApwU5%22%29+%5D%5D",
