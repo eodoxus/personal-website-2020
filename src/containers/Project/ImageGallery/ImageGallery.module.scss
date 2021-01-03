@@ -27,8 +27,8 @@ $color-controls--hover: #999;
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: $gutter-sm;
+    right: $gutter-sm;
     z-index: 1;
   }
 

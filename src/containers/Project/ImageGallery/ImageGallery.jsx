@@ -36,7 +36,7 @@ export default ({ className, images }) => {
     handleCarouselButtonClick(curIdx - 1);
   }
 
-  function handleImageClick(image) {
+  function handleThumbnailClick(image) {
     loadModalImage(image);
     setCurIdx(images.findIndex((i) => i === image));
     setIsModalOpen(true);
@@ -69,7 +69,11 @@ export default ({ className, images }) => {
           <i className="fa fa-close" />
         </div>
         <div ref={modalRef} className={styles["image-frame"]}>
-          {modalImage && <img src={modalImage.url} alt={modalImage.title} />}
+          {modalImage && (
+            <a href={modalImage.url} target="_blank">
+              <img src={modalImage.url} alt={modalImage.title} />
+            </a>
+          )}
         </div>
         <div
           className={cx(styles.arrow, styles["arrow-prev"])}
@@ -90,7 +94,7 @@ export default ({ className, images }) => {
             key={image.title}
             title={image.title}
             url={image.url}
-            onClick={() => handleImageClick(image)}
+            onClick={() => handleThumbnailClick(image)}
           />
         ))}
       </TileList>
