@@ -32,17 +32,30 @@ $color-controls--hover: #999;
     z-index: 1;
   }
 
-  .image-frame {
+  .image-viewport {
     @include fill-container;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: $gutter-sm;
+    margin: $gutter-sm;
+    overflow: hidden;
 
-    & > img {
+    .image {
       max-height: 100%;
       border: 2px solid $color-controls;
+
+      &.transition {
+        transition: margin-left 0.25s;
+      }
+
+      &.transition-left {
+        margin-left: -100%;
+      }
+
+      &.transition-right {
+        margin-left: 100%;
+      }
     }
   }
 

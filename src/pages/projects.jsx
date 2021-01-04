@@ -12,7 +12,7 @@ export default () => {
     <SlideInOverlay>
       <TileList>
         {projects.map((project) => (
-          <ProjectTile project={project} />
+          <ProjectTile project={project} key={project.uid} />
         ))}
       </TileList>
     </SlideInOverlay>
