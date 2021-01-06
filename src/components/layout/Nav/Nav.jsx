@@ -40,6 +40,7 @@ export default () => {
       <div />
       <div className={styles.links}>
         <NavLink to="/projects">Projects</NavLink>
+        <NavLink to="/photos">Photos</NavLink>
       </div>
       <div className={styles["nav-right"]} />
     </nav>

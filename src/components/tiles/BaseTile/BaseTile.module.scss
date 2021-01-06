@@ -19,10 +19,14 @@
   }
 }
 
-.background {
+.background-overlay {
   @include fill-container;
 
   background-color: rgba(44, 62, 80, 0.3);
+
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 .title {
@@ -36,4 +40,10 @@
   padding: $gutter-xs $gutter-sm;
   color: $color-font-inverse;
   $font-weight: $font-weight--bold;
+}
+
+.show-title-on-hover {
+  .title {
+    display: none;
+  }
 }

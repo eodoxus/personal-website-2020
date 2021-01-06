@@ -2,7 +2,7 @@ import React from "react";
 import { Date as ParseDate, RichText } from "prismic-reactjs";
 import { useRouteData } from "react-static";
 
-import ImageGallery from "./ImageGallery/ImageGallery";
+import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import SlideInOverlay from "../SlideInOverlay/SlideInOverlay";
 
 import styles from "./Project.module.scss";

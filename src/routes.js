@@ -1,18 +1,33 @@
 import { getProjects } from "./services/cms-service";
+import { getPhotos } from "./services/photos-service";
 
 export default async () => {
-  const projectRoutesData = await getProjectsRouteData();
+  const [photosRoutesData, projectsRoutesData] = await Promise.all([
+    getPhotosRouteData(),
+    getProjectsRouteData(),
+  ]);
 
   return [
     {
       path: "/",
     },
     {
+      path: "/photos",
+      ...photosRoutesData,
+    },
+    {
       path: "/projects",
-      ...projectRoutesData,
+      ...projectsRoutesData,
     },
   ];
 };
+
+async function getPhotosRouteData() {
+  const photos = await getPhotos();
+  return {
+    getData: () => ({ photos }),
+  };
+}
 
 async function getProjectsRouteData() {
   const projects = await getProjects();

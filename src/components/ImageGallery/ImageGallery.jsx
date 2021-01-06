@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import cx from "classnames";
 import Hammer from "react-hammerjs";
 
-import ImageGalleryThumbnail from "../ImageGalleryThumbnail/ImageGalleryThumbnail";
-import TileList from "../../../components/tiles/TileList/TileList";
+import ImageGalleryThumbnail from "./ImageGalleryThumbnail/ImageGalleryThumbnail";
+import TileList from "../tiles/TileList/TileList";
 
 import styles from "./ImageGallery.module.scss";
 
@@ -72,6 +72,23 @@ export default ({ className, images }) => {
     handleCarouselButtonClick(curIdx - 1, SWIPE_RIGHT);
   }
 
+  function handleKeyboard(e) {
+    console.log("handle");
+    switch (e.key) {
+      case "Escape":
+        closeModal();
+        break;
+      case "ArrowRight":
+        handleCarouselButtonClickNext();
+        break;
+      case "ArrowLeft":
+        handleCarouselButtonClickPrev();
+        break;
+      default:
+        break;
+    }
+  }
+
   async function handleThumbnailClick(image) {
     await fetchModalImage(image);
     setModalImage(image);
@@ -94,6 +111,13 @@ export default ({ className, images }) => {
       closeModal();
     }
   }
+
+  useEffect(() => {
+    document.addEventListener("keyup", handleKeyboard);
+    return () => {
+      document.removeEventListener("keyup", handleKeyboard);
+    };
+  }, [curIdx]);
 
   return (
     <div className={cx(className)}>
@@ -132,9 +156,9 @@ export default ({ className, images }) => {
         </div>
       </div>
       <TileList>
-        {images.map((image) => (
+        {images.map((image, idx) => (
           <ImageGalleryThumbnail
-            key={image.title}
+            key={`${image.title}-${idx}`}
             title={image.title}
             url={image.url}
             onClick={() => handleThumbnailClick(image)}
