@@ -1,8 +1,13 @@
-import { getProjects } from "./services/cms-service";
+import { getPages, getProjects } from "./services/cms-service";
 import { getPhotos } from "./services/photos-service";
 
 export default async () => {
-  const [photosRoutesData, projectsRoutesData] = await Promise.all([
+  const [
+    pageRoutesData,
+    photosRoutesData,
+    projectsRoutesData,
+  ] = await Promise.all([
+    getPageRoutesData(),
     getPhotosRouteData(),
     getProjectsRouteData(),
   ]);
@@ -19,8 +24,18 @@ export default async () => {
       path: "/projects",
       ...projectsRoutesData,
     },
+    ...pageRoutesData,
   ];
 };
+
+async function getPageRoutesData() {
+  const pages = await getPages();
+  return pages.map((page) => ({
+    path: page.uid,
+    getData: () => ({ page }),
+    template: "src/containers/Page/Page",
+  }));
+}
 
 async function getPhotosRouteData() {
   const photos = await getPhotos();

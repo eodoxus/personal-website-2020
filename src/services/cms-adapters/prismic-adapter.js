@@ -4,11 +4,21 @@ import get from "lodash/get";
 const API_ENDPOINT = "https://jaygordocom.cdn.prismic.io/api/v2";
 const IMAGE_PLACEHOLDER = "/img/avatar_2019.jpg";
 const DOC_TYPES = {
+  page: "page",
   project: "project",
 };
 const SLICE_TYPES = {
   images: "images",
 };
+
+export async function getPages() {
+  const resp = await fetchDocumentsByType(DOC_TYPES.page);
+  if (!resp.results) {
+    console.error("Prismic Adapter > getPages > found 0 documents");
+    return [];
+  }
+  return resp.results;
+}
 
 export async function getProjects() {
   const resp = await fetchDocumentsByType(DOC_TYPES.project);

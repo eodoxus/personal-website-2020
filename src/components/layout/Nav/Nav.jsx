@@ -41,6 +41,7 @@ export default () => {
       <div className={styles.links}>
         <NavLink to="/projects">Projects</NavLink>
         <NavLink to="/photos">Photos</NavLink>
+        <NavLink to="/about">About</NavLink>
       </div>
       <div className={styles["nav-right"]} />
     </nav>

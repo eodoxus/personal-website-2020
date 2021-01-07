@@ -1,6 +1,17 @@
-import { getProjects } from "./prismic-adapter";
+import { getPages, getProjects } from "./prismic-adapter";
 
 describe("Service: CmsAdapters > PrismicAdapter", () => {
+  describe("Function: getPages()", () => {
+    it("should fetch list of page documents from CMS", async () => {
+      const pages = await getPages();
+      expect(pages.length).toBe(2);
+      const page = pages[0];
+      expect(page.data.title[0].text).toBe("Mock");
+      expect(page.data.body.length).toBe(1);
+      expect(page.data.body[0].primary.content[0].text).toBe("some mock text");
+    });
+  });
+
   describe("Function: getProjects()", () => {
     it("should fetch list of projects from CMS", async () => {
       const projects = await getProjects();

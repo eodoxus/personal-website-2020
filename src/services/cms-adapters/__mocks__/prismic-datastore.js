@@ -341,3 +341,84 @@ export const images = [
     },
   },
 ];
+
+export const pages = {
+  page: 1,
+  results_per_page: 20,
+  results_size: 1,
+  total_results_size: 1,
+  total_pages: 1,
+  next_page: null,
+  prev_page: null,
+  results: [
+    {
+      id: "mock-id",
+      uid: "about",
+      type: "page",
+      href:
+        "https://jaygordocom.cdn.prismic.io/api/v2/documents/search?ref=X_aaZBAAACMAujvZ&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22X_aaYBAAAIBCujvK%22%29+%5D%5D",
+      tags: [],
+      first_publication_date: "2021-01-07T05:21:40+0000",
+      last_publication_date: "2021-01-07T05:21:40+0000",
+      slugs: ["mock-slug"],
+      linked_documents: [],
+      lang: "en-us",
+      alternate_languages: [],
+      data: {
+        title: [{ type: "heading1", text: "Mock", spans: [] }],
+        body: [
+          {
+            slice_type: "rich_text",
+            slice_label: null,
+            items: [{}],
+            primary: {
+              content: [
+                {
+                  type: "paragraph",
+                  text: "some mock text",
+                  spans: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      id: "X_aaYBAAAIBCujvK",
+      uid: "about",
+      type: "page",
+      href:
+        "https://jaygordocom.cdn.prismic.io/api/v2/documents/search?ref=X_aaZBAAACMAujvZ&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22X_aaYBAAAIBCujvK%22%29+%5D%5D",
+      tags: [],
+      first_publication_date: "2021-01-07T05:21:40+0000",
+      last_publication_date: "2021-01-07T05:21:40+0000",
+      slugs: ["about"],
+      linked_documents: [],
+      lang: "en-us",
+      alternate_languages: [],
+      data: {
+        title: [{ type: "heading1", text: "About", spans: [] }],
+        body: [
+          {
+            slice_type: "rich_text",
+            slice_label: null,
+            items: [{}],
+            primary: {
+              content: [
+                {
+                  type: "paragraph",
+                  text:
+                    "Hi, I'm Jason Gordon, a web software architect working for the best company in Southern California, Zwift. I live in magical Carroll Park and am the proud dad of 2 old dogs. Life is good.",
+                  spans: [],
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+  version: "6c549e9",
+  license: "All Rights Reserved",
+};

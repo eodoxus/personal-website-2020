@@ -1,6 +1,9 @@
 import * as CmsAdapter from "./cms-adapters/prismic-adapter";
 
+export async function getPages() {
+  return CmsAdapter.getPages();
+}
+
 export async function getProjects() {
-  const project = await CmsAdapter.getProjects();
-  return project;
+  return CmsAdapter.getProjects();
 }

@@ -73,7 +73,6 @@ export default ({ className, images }) => {
   }
 
   function handleKeyboard(e) {
-    console.log("handle");
     switch (e.key) {
       case "Escape":
         closeModal();
