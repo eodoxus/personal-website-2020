@@ -1,9 +1,10 @@
 import React from "react";
 import { Date as ParseDate, RichText } from "prismic-reactjs";
-import { useRouteData } from "react-static";
+import { Head, useRouteData } from "react-static";
 
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import SlideInOverlay from "../SlideInOverlay/SlideInOverlay";
+import { buildPageTitle } from "../../helpers";
 
 import styles from "./Project.module.scss";
 
@@ -25,6 +26,9 @@ export default () => {
 
   return (
     <SlideInOverlay className={styles.container}>
+      <Head>
+        <title>{`${buildPageTitle(title)} Project`}</title>
+      </Head>
       <h1 className={styles.title}>{title}</h1>
       <p>{getDateRange(startDate, endDate)}</p>
       <RichText render={content} />
