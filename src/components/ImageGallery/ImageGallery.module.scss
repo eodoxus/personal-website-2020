@@ -41,9 +41,12 @@ $color-controls--hover: #999;
     margin: $gutter-sm;
     overflow: hidden;
 
+    @media screen and (max-width: 1200px) {
+      margin: 0;
+    }
+
     .image {
       max-height: 100%;
-      border: 2px solid $color-controls;
 
       &.transition {
         transition: margin-left 0.25s;

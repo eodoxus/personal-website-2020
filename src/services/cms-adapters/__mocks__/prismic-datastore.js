@@ -398,7 +398,7 @@ export const pages = {
       lang: "en-us",
       alternate_languages: [],
       data: {
-        title: [{ type: "heading1", text: "About", spans: [] }],
+        title: [{ type: "heading1", text: "Mock Page Title", spans: [] }],
         body: [
           {
             slice_type: "rich_text",

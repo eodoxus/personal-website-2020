@@ -6,9 +6,9 @@ describe("Service: CmsAdapters > PrismicAdapter", () => {
       const pages = await getPages();
       expect(pages.length).toBe(2);
       const page = pages[0];
-      expect(page.data.title[0].text).toBe("Mock");
-      expect(page.data.body.length).toBe(1);
-      expect(page.data.body[0].primary.content[0].text).toBe("some mock text");
+      expect(page.title).toBe("Mock");
+      expect(page.slices.length).toBe(1);
+      expect(page.slices[0].primary.content[0].text).toBe("some mock text");
     });
   });
 

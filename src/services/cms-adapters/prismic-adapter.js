@@ -8,7 +8,14 @@ const DOC_TYPES = {
   project: "project",
 };
 const SLICE_TYPES = {
+  imageGallery: "image_gallery",
   images: "images",
+  richText: "rich_text",
+};
+const SLICE_TRANSFORMS = {
+  [SLICE_TYPES.imageGallery]: transformImageGallerySlice,
+  [SLICE_TYPES.images]: transformImagesSlice,
+  [SLICE_TYPES.richText]: transformRichTextSlice,
 };
 
 export async function getPages() {
@@ -17,7 +24,12 @@ export async function getPages() {
     console.error("Prismic Adapter > getPages > found 0 documents");
     return [];
   }
-  return resp.results;
+  return transformAndFormatDocument(resp.results, (doc) => ({
+    slices: get(doc, "data.body", []),
+    id: doc.id,
+    title: get(doc, "data.title[0].text", []),
+    uid: doc.uid,
+  }));
 }
 
 export async function getProjects() {
@@ -26,47 +38,25 @@ export async function getProjects() {
     console.error("Prismic Adapter > getProjects > found 0 documents");
     return [];
   }
-  return (
-    await Promise.all(
-      resp.results
-        .filter((document) => !!get(document, "data.body"))
-        .map((document) => attachImages(document))
-    )
-  ).map((projectDoc) => ({
-    content: get(projectDoc, "data.content", []),
-    endDate: get(projectDoc, "data.end_date"),
-    id: projectDoc.id,
-    images: get(projectDoc, "images", []),
-    startDate: get(projectDoc, "data.start_date"),
-    title: get(projectDoc, "data.title[0].text", []),
-    uid: projectDoc.uid,
+  return transformAndFormatDocument(resp.results, (doc) => ({
+    content: get(doc, "data.content", []),
+    endDate: get(doc, "data.end_date"),
+    id: doc.id,
+    images: get(doc, "data.body[0].images", []),
+    startDate: get(doc, "data.start_date"),
+    title: get(doc, "data.title[0].text", []),
+    uid: doc.uid,
   }));
 }
 
-async function attachImages(document) {
-  const slices = get(document, "data.body", []);
-  const imagesSlice = slices.find(
-    (slice) => slice.slice_type === SLICE_TYPES.images
-  );
-  if (!imagesSlice) {
-    console.error(
-      "Prismic Adapter > attachImages > no images found to attach to document"
-    );
-  } else {
-    const imageDocs = await Promise.all(
-      imagesSlice.items.map((imageItem) =>
-        fetchDocumentById(get(imageItem, "image_ref.id"))
-      )
-    );
-    document.images = imageDocs
-      .filter((imageDoc) => !!imageDoc)
-      .map((imageDoc) => ({
-        tags: imageDoc.tags,
-        title: get(imageDoc, "data.title[0].text", "Untitled"),
-        url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
-      }));
-  }
-  return document;
+function extractImages(imageDocs) {
+  return imageDocs
+    .filter((imageDoc) => !!imageDoc)
+    .map((imageDoc) => ({
+      tags: imageDoc.tags,
+      title: get(imageDoc, "data.title[0].text", "Untitled"),
+      url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
+    }));
 }
 
 async function fetchDocumentsByType(type, sortField, sortDirection = "asc") {
@@ -86,4 +76,57 @@ async function fetchDocumentById(id) {
 
 async function getApi() {
   return Prismic.getApi(API_ENDPOINT);
+}
+
+async function transformAndFormatDocument(documents, formatter) {
+  return (
+    await Promise.all(
+      documents
+        .filter((document) => !!get(document, "data.body"))
+        .map((document) => transformSlices(document))
+    )
+  ).map((doc) => formatter(doc));
+}
+
+async function transformSlices(document) {
+  document.data.body = await Promise.all(
+    document.data.body.map(async (slice) => {
+      let transformedSlice = slice;
+      if (SLICE_TRANSFORMS[slice.slice_type]) {
+        transformedSlice = await SLICE_TRANSFORMS[slice.slice_type](slice);
+      }
+      return transformedSlice;
+    })
+  );
+  return document;
+}
+
+async function transformImagesSlice(slice, imageIdField = "image_ref.id") {
+  const imageDocs = await Promise.all(
+    slice.items.map((item) => fetchDocumentById(get(item, imageIdField)))
+  );
+  return {
+    images: extractImages(imageDocs),
+    ...slice,
+  };
+}
+
+async function transformImageGallerySlice(slice) {
+  return transformImagesSlice(slice, "image.id");
+}
+
+async function transformRichTextSlice(slice) {
+  const {
+    background_color: backgroundColor,
+    background_image: backgroundImage,
+    content,
+    font_color: color,
+  } = slice.primary;
+  return {
+    backgroundColor,
+    backgroundImage,
+    content,
+    color,
+    ...slice,
+  };
 }

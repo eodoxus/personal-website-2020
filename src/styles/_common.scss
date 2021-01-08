@@ -27,7 +27,9 @@ $font-weight--x-bold: 800;
 // Layout Dimensions
 $dimension-footer--height: 40px;
 $dimension-header--height: 67px;
-$chrome-height: $dimension-header--height + $dimension-footer--height;
+$dimension-nav--height: 30px;
+$chrome-height: $dimension-header--height + $dimension-nav--height +
+  $dimension-footer--height;
 
 // Spacing
 $gutter-xs: 10px;
