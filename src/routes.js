@@ -1,12 +1,14 @@
-import { getPages, getProjects } from "./services/cms-service";
+import { getHomePage, getPages, getProjects } from "./services/cms-service";
 import { getPhotos } from "./services/photos-service";
 
 export default async () => {
   const [
+    homepageRouteData,
     pageRoutesData,
     photosRoutesData,
     projectsRoutesData,
   ] = await Promise.all([
+    getHomepageRouteData(),
     getPageRoutesData(),
     getPhotosRouteData(),
     getProjectsRouteData(),
@@ -15,6 +17,11 @@ export default async () => {
   return [
     {
       path: "/",
+      ...homepageRouteData,
+    },
+    {
+      path: "/codewarrior",
+      template: "src/containers/CodewarriorGame/CodewarriorGame",
     },
     {
       path: "/photos",
@@ -27,6 +34,13 @@ export default async () => {
     ...pageRoutesData,
   ];
 };
+
+async function getHomepageRouteData() {
+  const page = await getHomePage();
+  return {
+    getData: () => ({ page }),
+  };
+}
 
 async function getPageRoutesData() {
   const pages = await getPages();

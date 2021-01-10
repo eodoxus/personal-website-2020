@@ -1,5 +1,9 @@
 import * as CmsAdapter from "./cms-adapters/prismic-adapter";
 
+export async function getHomePage() {
+  return CmsAdapter.getHomePage();
+}
+
 export async function getPages() {
   return CmsAdapter.getPages();
 }

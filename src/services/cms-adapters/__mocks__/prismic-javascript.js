@@ -1,9 +1,11 @@
-import { pages, projects, images } from "./prismic-datastore";
+import { homepages, pages, projects, images } from "./prismic-datastore";
 
 export default {
   getApi: async () => ({
     query: jest.fn(async (type) => {
       switch (type) {
+        case "homepage":
+          return homepages;
         case "page":
           return pages;
         case "project":

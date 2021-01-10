@@ -1,6 +1,15 @@
-import { getPages, getProjects } from "./cms-service";
+import { getHomePage, getPages, getProjects } from "./cms-service";
 
 describe("Service: CmsService", () => {
+  describe("Function: getHomePage()", () => {
+    it("should fetch homepage doc from CMS", async () => {
+      const page = await getHomePage();
+      expect(page.slices.length).toBe(2);
+      expect(page.slices[0].slice_type).toBe("rich_text");
+      expect(page.title).toBeUndefined();
+    });
+  });
+
   describe("Function: getPages()", () => {
     it("should fetch list of pages from CMS", async () => {
       const pages = await getPages();

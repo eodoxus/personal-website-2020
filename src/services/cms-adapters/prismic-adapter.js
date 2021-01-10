@@ -4,6 +4,7 @@ import get from "lodash/get";
 const API_ENDPOINT = "https://jaygordocom.cdn.prismic.io/api/v2";
 const IMAGE_PLACEHOLDER = "/img/avatar_2019.jpg";
 const DOC_TYPES = {
+  homepage: "homepage",
   page: "page",
   project: "project",
 };
@@ -11,12 +12,26 @@ const SLICE_TYPES = {
   imageGallery: "image_gallery",
   images: "images",
   richText: "rich_text",
+  tiles: "tiles",
 };
 const SLICE_TRANSFORMS = {
   [SLICE_TYPES.imageGallery]: transformImageGallerySlice,
   [SLICE_TYPES.images]: transformImagesSlice,
   [SLICE_TYPES.richText]: transformRichTextSlice,
+  [SLICE_TYPES.tiles]: transformTilesSlice,
 };
+
+export async function getHomePage() {
+  const resp = await fetchDocumentsByType(DOC_TYPES.homepage);
+  if (!resp.results) {
+    console.error("Prismic Adapter > getPages > found 0 documents");
+    return [];
+  }
+  const docs = await transformAndFormatDocuments(resp.results, (doc) => ({
+    slices: get(doc, "data.body", []),
+  }));
+  return docs[0];
+}
 
 export async function getPages() {
   const resp = await fetchDocumentsByType(DOC_TYPES.page);
@@ -24,7 +39,7 @@ export async function getPages() {
     console.error("Prismic Adapter > getPages > found 0 documents");
     return [];
   }
-  return transformAndFormatDocument(resp.results, (doc) => ({
+  return transformAndFormatDocuments(resp.results, (doc) => ({
     slices: get(doc, "data.body", []),
     id: doc.id,
     title: get(doc, "data.title[0].text", []),
@@ -38,7 +53,7 @@ export async function getProjects() {
     console.error("Prismic Adapter > getProjects > found 0 documents");
     return [];
   }
-  return transformAndFormatDocument(resp.results, (doc) => ({
+  return transformAndFormatDocuments(resp.results, (doc) => ({
     content: get(doc, "data.content", []),
     endDate: get(doc, "data.end_date"),
     id: doc.id,
@@ -78,7 +93,7 @@ async function getApi() {
   return Prismic.getApi(API_ENDPOINT);
 }
 
-async function transformAndFormatDocument(documents, formatter) {
+async function transformAndFormatDocuments(documents, formatter) {
   return (
     await Promise.all(
       documents
@@ -127,6 +142,17 @@ async function transformRichTextSlice(slice) {
     backgroundImage,
     content,
     color,
+    ...slice,
+  };
+}
+
+function transformTilesSlice(slice) {
+  return {
+    tiles: slice.items.map((item) => ({
+      image: item.image.url,
+      url: item.link,
+      title: item.title,
+    })),
     ...slice,
   };
 }

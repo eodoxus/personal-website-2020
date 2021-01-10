@@ -1,3 +1,98 @@
+export const homepages = {
+  page: 1,
+  results_per_page: 20,
+  results_size: 1,
+  total_results_size: 1,
+  total_pages: 1,
+  next_page: null,
+  prev_page: null,
+  results: [
+    {
+      id: "X_o82hAAACUAylqT",
+      uid: null,
+      type: "homepage",
+      href:
+        "https://jaygordocom.cdn.prismic.io/api/v2/documents/search?ref=X_p6GhAAALsyy2hb&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22X_o82hAAACUAylqT%22%29+%5D%5D",
+      tags: [],
+      first_publication_date: "2021-01-09T23:31:42+0000",
+      last_publication_date: "2021-01-10T03:52:58+0000",
+      slugs: ["homepage", "play-codewarrior"],
+      linked_documents: [],
+      lang: "en-us",
+      alternate_languages: [],
+      data: {
+        title: [{ type: "heading1", text: "Mock Homepage", spans: [] }],
+        body: [
+          {
+            slice_type: "rich_text",
+            slice_label: null,
+            items: [{}],
+            primary: {
+              background_color: null,
+              font_color: null,
+              background_image: {},
+              content: [
+                {
+                  type: "heading3",
+                  text: "Mock content",
+                  spans: [],
+                },
+                {
+                  type: "paragraph",
+                  text: "Or check out my projects :)",
+                  spans: [],
+                },
+              ],
+            },
+          },
+          {
+            slice_type: "tiles",
+            slice_label: null,
+            items: [
+              {
+                image: {
+                  dimensions: { width: 1440, height: 1370 },
+                  alt: null,
+                  copyright: null,
+                  url:
+                    "https://images.prismic.io/jaygordocom/f33eb38e-0961-4fee-b90a-ded515a9476f_codewarrior.png?auto=compress,format",
+                },
+                title: "Mock Tile",
+                link: "/codewarrior",
+              },
+              {
+                image: {
+                  dimensions: { width: 1200, height: 575 },
+                  alt: null,
+                  copyright: null,
+                  url:
+                    "https://images.prismic.io/jaygordocom/8f08efdb-73bc-47f8-8fa6-10b736b4e23a_nextjs_03.png?auto=compress,format",
+                },
+                title: "Projects",
+                link: "/projects",
+              },
+              {
+                image: {
+                  dimensions: { width: 1330, height: 1056 },
+                  alt: null,
+                  copyright: null,
+                  url:
+                    "https://images.prismic.io/jaygordocom/eca731f3-52b9-410e-953b-eaf21d5c7ac4_photos.png?auto=compress,format",
+                },
+                title: "Photos",
+                link: "photos",
+              },
+            ],
+            primary: {},
+          },
+        ],
+      },
+    },
+  ],
+  version: "6c549e9",
+  license: "All Rights Reserved",
+};
+
 export const projects = {
   page: 1,
   results_per_page: 20,
