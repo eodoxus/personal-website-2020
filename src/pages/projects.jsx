@@ -1,10 +1,17 @@
 import React from "react";
+import { Date as ParseDate } from "prismic-reactjs";
 import { Head, useRouteData } from "react-static";
 
 import SlideInOverlay from "../containers/SlideInOverlay/SlideInOverlay";
 import ProjectTile from "../components/tiles/ProjectTile/ProjectTile";
 import TileList from "../components/tiles/TileList/TileList";
 import { buildPageTitle } from "../helpers";
+
+function sort(a, b) {
+  const aDate = ParseDate(a.endDate);
+  const bDate = ParseDate(b.endDate);
+  return bDate.getTime() - aDate.getTime();
+}
 
 export default () => {
   const { projects } = useRouteData();
@@ -15,7 +22,7 @@ export default () => {
         <title>{buildPageTitle("Projects")}</title>
       </Head>
       <TileList>
-        {projects.map((project) => (
+        {projects.sort(sort).map((project) => (
           <ProjectTile project={project} key={project.uid} />
         ))}
       </TileList>
