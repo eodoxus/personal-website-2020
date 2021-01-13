@@ -8,12 +8,7 @@ $color-controls--hover: #999;
 
   position: fixed;
   background-color: rgba(0, 0, 0, 0.85);
-  visibility: hidden;
   z-index: $z-index--modal;
-
-  &.open {
-    visibility: visible;
-  }
 
   .close-button {
     color: $color-app-background;
