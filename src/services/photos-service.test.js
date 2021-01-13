@@ -26,6 +26,7 @@ const mockPhotos = {
       before: "before",
       after: "after",
     },
+    next: "next",
   },
 };
 
@@ -48,23 +49,26 @@ describe("Service: PhotosService", () => {
         }
       );
       const photos = await PhotosService.getPhotos();
-      expect(photos).toEqual([
-        {
-          id: "1",
-          title: undefined,
-          url: "https://jaygordo.com/photos/photo-1",
-        },
-        {
-          id: "2",
-          title: undefined,
-          url: "https://jaygordo.com/photos/photo-2",
-        },
-        {
-          id: "3",
-          title: "Wildlings",
-          url: "https://jaygordo.com/photos/photo-3",
-        },
-      ]);
+      expect(photos).toEqual({
+        images: [
+          {
+            id: "1",
+            title: undefined,
+            url: "https://jaygordo.com/photos/photo-1",
+          },
+          {
+            id: "2",
+            title: undefined,
+            url: "https://jaygordo.com/photos/photo-2",
+          },
+          {
+            id: "3",
+            title: "Wildlings",
+            url: "https://jaygordo.com/photos/photo-3",
+          },
+        ],
+        next: "next",
+      });
     });
   });
 });

@@ -6,16 +6,20 @@ const ACCESS_TOKEN =
 const PROFILE_ID = "me";
 const URL_API = "https://graph.instagram.com";
 
-export async function getPhotos() {
+export async function getPhotos(next) {
   const query = `media?fields=caption,media_url,media_type`;
   const url = `${URL_API}/${PROFILE_ID}/${query}&access_token=${ACCESS_TOKEN}`;
   try {
-    const response = await axios.get(url);
-    return get(response, "data.data", []).map((photo) => ({
+    const response = await axios.get(next || url);
+    const images = get(response, "data.data", []).map((photo) => ({
       id: photo.id,
       title: photo.caption,
       url: photo.media_url,
     }));
+    return {
+      images,
+      next: get(response, "data.paging.next"),
+    };
   } catch (e) {
     console.error(e);
   }
