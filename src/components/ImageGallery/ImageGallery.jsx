@@ -64,8 +64,8 @@ export default ({ className, images, canPaginate, onPaginate }) => {
         <TileList>
           {images.map((image, idx) => (
             <ImageGalleryThumbnail
-              key={`${image.title}-${idx}`}
-              title={image.title}
+              key={`${image.caption}-${idx}`}
+              caption={image.caption}
               url={image.url}
               onClick={() => handleThumbnailClick(image)}
             />

@@ -7,12 +7,12 @@ import styles from "./ImageGalleryThumbnail.module.scss";
 
 const IMAGE_WIDTH = 600;
 
-export default ({ className, title, url, onClick }) => {
+export default ({ className, caption, url, onClick }) => {
   return (
     <div onClick={onClick} className={cx(className, styles.container)}>
       <BaseTile
-        className={styles["show-title-on-hover"]}
-        title={title}
+        className={styles["show-caption-on-hover"]}
+        caption={caption}
         image={`${url}&w=${IMAGE_WIDTH}`}
       />
     </div>

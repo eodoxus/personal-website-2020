@@ -36,7 +36,7 @@ describe("Service: CmsService", () => {
       expect(project.images.length).toBe(3);
       const image = project.images[1];
       expect(image.tags).toEqual(["project: nextjs"]);
-      expect(image.title).toBe("Mock Image 04");
+      expect(image.caption).toBe("Mock Image 04");
       expect(image.url).toBe("/mock-image");
     });
   });

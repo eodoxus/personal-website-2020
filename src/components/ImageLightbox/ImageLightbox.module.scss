@@ -10,6 +10,13 @@ $color-controls--hover: #999;
   background-color: rgba(0, 0, 0, 0.85);
   z-index: $z-index--modal;
 
+  .caption {
+    position: absolute;
+    bottom: 10%;
+    color: $color-font-inverse;
+    left: $gutter-sm;
+  }
+
   .close-button {
     color: $color-app-background;
     font-size: $font-size--icon-button;

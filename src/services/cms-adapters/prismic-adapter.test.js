@@ -6,7 +6,7 @@ describe("Service: CmsAdapters > PrismicAdapter", () => {
       const page = await getHomePage();
       expect(page.slices.length).toBe(2);
       expect(page.slices[1].slice_type).toBe("tiles");
-      expect(page.slices[1].tiles[0].title).toBe("Mock Tile");
+      expect(page.slices[1].tiles[0].caption).toBe("Mock Tile");
     });
   });
 
@@ -36,7 +36,7 @@ describe("Service: CmsAdapters > PrismicAdapter", () => {
       expect(project.startDate).toBeDefined();
       expect(project.title).toBe("Mock Project 01");
       expect(project.images.length).toBe(2);
-      expect(project.images[0].title).toBe("Mock Image 01");
+      expect(project.images[0].caption).toBe("Mock Image 01");
     });
   });
 });

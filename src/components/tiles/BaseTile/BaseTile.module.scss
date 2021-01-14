@@ -30,7 +30,7 @@
   }
 }
 
-.title {
+.caption {
   position: absolute;
   bottom: $gutter-xs;
   left: $gutter-xs;
@@ -43,8 +43,8 @@
   $font-weight: $font-weight--bold;
 }
 
-.show-title-on-hover {
-  .title {
+.show-caption-on-hover {
+  .caption {
     display: none;
   }
 }

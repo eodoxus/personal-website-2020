@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from "react";
 import cx from "classnames";
 import Hammer from "react-hammerjs";
 
+import { formatDate } from "../../helpers";
+
 import styles from "./ImageLightbox.module.scss";
 
 const DURATION_ANIMATION = 250;
@@ -118,7 +120,7 @@ export default ({ className, image, images, onClose }) => {
             <a href={modalImage.url} target="_blank" rel="noreferrer">
               <img
                 src={modalImage.url}
-                alt={modalImage.title}
+                alt={modalImage.caption}
                 ref={imgRef}
                 className={styles["image"]}
               />
@@ -137,6 +139,10 @@ export default ({ className, image, images, onClose }) => {
         onClick={handleCarouselButtonClickNext}
       >
         <i className="fa fa-step-forward" />
+      </div>
+      <div className={styles.caption}>
+        {modalImage.caption && <p>{modalImage.caption}</p>}
+        {formatDate(modalImage.date) && <p>{formatDate(modalImage.date)}</p>}
       </div>
     </div>
   );

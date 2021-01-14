@@ -42,7 +42,7 @@ describe("Service: PhotosService", () => {
   describe("Function: getPhotos()", () => {
     it("should fetch list of photos from image store", async () => {
       moxios.stubRequest(
-        "https://graph.instagram.com/me/media?fields=caption,media_url,media_type&access_token=IGQVJYbW1hdncwUWwzbjd3X0NCeWxlT2hfLS1xb2JYdXFyYnowc1djNm5VMWRSemlTR19tNXNfYldfRlV5ZAUxUd2x6ZAktWZAFlWRHYyM2JoRjFONEdEUWxUSHBWd1ZAQNkhVLWtHNWdBSm8yZAVc5RXQtbAZDZD",
+        "https://graph.instagram.com/me/media?fields=caption,id,media_type,media_url,timestamp&access_token=IGQVJWVVc0VDhIX3BzMEdqWnNYOW5YY1ZAoNFQ0eWpWMFIxSFVGWWluOVpUT3JuS0lYSm9IZAzZAuWTRETWJfaVlUcUNhWEtVelRkNHBOM1U3dGtQMVV3SS1XSGJlN01URDNVUzNJM1BkekQxZA25zWUJSYwZDZD",
         {
           status: 200,
           responseText: mockPhotos,
@@ -52,18 +52,18 @@ describe("Service: PhotosService", () => {
       expect(photos).toEqual({
         images: [
           {
+            caption: undefined,
             id: "1",
-            title: undefined,
             url: "https://jaygordo.com/photos/photo-1",
           },
           {
+            caption: undefined,
             id: "2",
-            title: undefined,
             url: "https://jaygordo.com/photos/photo-2",
           },
           {
+            caption: "Wildlings",
             id: "3",
-            title: "Wildlings",
             url: "https://jaygordo.com/photos/photo-3",
           },
         ],

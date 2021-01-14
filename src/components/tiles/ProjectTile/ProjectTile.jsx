@@ -10,7 +10,7 @@ export default ({ project }) => {
   return (
     <Link to={`/projects/${uid}/`}>
       <BaseTile
-        title={title}
+        caption={title}
         image={`${getPromotedImageUrl(images)}&w=${IMAGE_WIDTH}`}
       />
     </Link>

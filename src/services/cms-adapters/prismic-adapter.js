@@ -57,7 +57,11 @@ export async function getProjects() {
     content: get(doc, "data.content", []),
     endDate: get(doc, "data.end_date"),
     id: doc.id,
-    images: get(doc, "data.body[0].images", []),
+    images: get(doc, "data.body[0].images", []).map((image) => ({
+      caption: image.title,
+      url: image.url,
+      tags: image.tags,
+    })),
     startDate: get(doc, "data.start_date"),
     title: get(doc, "data.title[0].text", []),
     uid: doc.uid,
@@ -151,7 +155,7 @@ function transformTilesSlice(slice) {
     tiles: slice.items.map((item) => ({
       image: item.image.url,
       url: item.link,
-      title: item.title,
+      caption: item.title,
     })),
     ...slice,
   };
