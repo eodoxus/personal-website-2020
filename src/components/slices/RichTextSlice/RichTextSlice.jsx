@@ -10,7 +10,7 @@ export default ({ backgroundColor, backgroundImage, color, content }) => {
   };
 
   if (backgroundImage) {
-    style.backgroundImage = `url(${backgroundImage.url})`;
+    style.backgroundImage = `url(${backgroundImage})`;
   }
 
   return (

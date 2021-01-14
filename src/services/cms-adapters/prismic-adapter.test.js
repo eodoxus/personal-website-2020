@@ -17,7 +17,10 @@ describe("Service: CmsAdapters > PrismicAdapter", () => {
       const page = pages[0];
       expect(page.title).toBe("Mock");
       expect(page.slices.length).toBe(1);
-      expect(page.slices[0].primary.content[0].text).toBe("some mock text");
+      expect(page.slices[0].content[0].text).toBe("some mock text");
+      expect(page.slices[0].backgroundColor).toBe("mock-bg-color");
+      expect(page.slices[0].backgroundImage).toBe("mock-image");
+      expect(page.slices[0].color).toBe("mock-color");
     });
   });
 

@@ -17,6 +17,7 @@ describe("Service: CmsService", () => {
       const page = pages[1];
       expect(page.slices.length).toBe(1);
       expect(page.slices[0].slice_type).toBe("rich_text");
+      expect(page.slices[0].backgroundImage).toBe("mock-image-2");
       expect(page.title).toBe("Mock Page Title");
     });
   });

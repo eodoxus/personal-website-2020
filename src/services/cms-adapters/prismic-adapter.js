@@ -139,7 +139,7 @@ async function transformRichTextSlice(slice) {
   } = slice.primary;
   return {
     backgroundColor,
-    backgroundImage,
+    backgroundImage: backgroundImage.url,
     content,
     color,
     ...slice,

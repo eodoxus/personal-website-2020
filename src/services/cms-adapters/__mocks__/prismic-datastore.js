@@ -467,6 +467,8 @@ export const pages = {
             slice_label: null,
             items: [{}],
             primary: {
+              background_color: "mock-bg-color",
+              background_image: { url: "mock-image" },
               content: [
                 {
                   type: "paragraph",
@@ -474,6 +476,7 @@ export const pages = {
                   spans: [],
                 },
               ],
+              font_color: "mock-color",
             },
           },
         ],
@@ -500,6 +503,7 @@ export const pages = {
             slice_label: null,
             items: [{}],
             primary: {
+              background_image: { url: "mock-image-2" },
               content: [
                 {
                   type: "paragraph",
