@@ -19,10 +19,6 @@ export default () => {
     setNext(newPhotos.next);
   }
 
-  function canPaginate() {
-    return !!next;
-  }
-
   return (
     <SlideInOverlay>
       <Head>
@@ -31,8 +27,7 @@ export default () => {
       <ImageGallery
         images={images}
         className={styles.gallery}
-        canPaginate={canPaginate()}
-        onPaginate={handlePagination}
+        onPaginate={!!next && handlePagination}
       />
     </SlideInOverlay>
   );

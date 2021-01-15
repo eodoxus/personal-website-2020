@@ -6,7 +6,7 @@ import ImageGalleryThumbnail from "./ImageGalleryThumbnail/ImageGalleryThumbnail
 import ImageLightbox from "../ImageLightbox/ImageLightbox";
 import TileList from "../tiles/TileList/TileList";
 
-export default ({ className, images, canPaginate, onPaginate }) => {
+export default ({ className, images, onPaginate }) => {
   const observer = useRef(null);
   const ref = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,11 +25,12 @@ export default ({ className, images, canPaginate, onPaginate }) => {
   }
 
   function connectPaginationObserver() {
-    if (!canPaginate) {
+    if (observer.current) observer.current.disconnect();
+
+    if (!onPaginate) {
       return;
     }
 
-    if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(
       ([entry]) => handleViewportIntersection(entry),
       {
@@ -49,7 +50,7 @@ export default ({ className, images, canPaginate, onPaginate }) => {
 
   useEffect(() => {
     connectPaginationObserver();
-  }, []);
+  }, [onPaginate]);
 
   return (
     <div className={cx(className)}>
