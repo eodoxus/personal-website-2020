@@ -8,6 +8,10 @@ export async function getPages() {
   return CmsAdapter.getPages();
 }
 
+export async function getPhotos(page = 1) {
+  return CmsAdapter.getPhotos(page);
+}
+
 export async function getProjects() {
   return CmsAdapter.getProjects();
 }

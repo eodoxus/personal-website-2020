@@ -12,8 +12,6 @@ export default () => {
   const { project } = useRouteData();
   const { title, content, images, startDate, endDate } = project;
 
-  console.log("images", images);
-
   return (
     <SlideInOverlay className={styles.container}>
       <Head>

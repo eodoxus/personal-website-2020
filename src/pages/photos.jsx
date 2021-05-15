@@ -4,7 +4,7 @@ import { Head, useRouteData } from "react-static";
 import ImageGallery from "../components/ImageGallery/ImageGallery";
 import SlideInOverlay from "../containers/SlideInOverlay/SlideInOverlay";
 import { buildPageTitle } from "../helpers";
-import { getPhotos } from "../services/photos-service";
+import { getPhotos } from "../services/cms-service";
 
 import styles from "./photos.module.scss";
 

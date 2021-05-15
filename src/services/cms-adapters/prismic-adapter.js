@@ -5,6 +5,7 @@ const API_ENDPOINT = "https://jaygordocom.cdn.prismic.io/api/v2";
 const IMAGE_PLACEHOLDER = "/img/avatar_2019.jpg";
 const DOC_TYPES = {
   homepage: "homepage",
+  image: "image",
   page: "page",
   project: "project",
 };
@@ -47,6 +48,37 @@ export async function getPages() {
   }));
 }
 
+export async function getPhotos(page = 1) {
+  const options = {
+    page,
+    pageSize: 5,
+    orderings: '[document.first_publication_date desc]'
+  };
+
+  const resp = await fetchDocumentsByTypeAndTags(
+    DOC_TYPES.image,
+    ["photos"],
+    options
+  );
+
+  if (!resp.results) {
+    console.error("Prismic Adapter > getPhotos > found 0 documents");
+    return {
+      images: [],
+      next: undefined,
+    };
+  }
+
+  return {
+    images: extractImages(resp.results, "").map((image) => ({
+      caption: image.title,
+      url: image.url,
+      tags: image.tags,
+    })),
+    next: resp.next_page ? resp.page + 1 : undefined
+  };
+}
+
 export async function getProjects() {
   const resp = await fetchDocumentsByType(DOC_TYPES.project);
   if (!resp.results) {
@@ -68,12 +100,12 @@ export async function getProjects() {
   }));
 }
 
-function extractImages(imageDocs) {
+function extractImages(imageDocs, defaultTitle = "Untitled") {
   return imageDocs
     .filter((imageDoc) => !!imageDoc)
     .map((imageDoc) => ({
       tags: imageDoc.tags,
-      title: get(imageDoc, "data.title[0].text", "Untitled"),
+      title: get(imageDoc, "data.title[0].text", defaultTitle),
       url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
     }));
 }
@@ -81,11 +113,26 @@ function extractImages(imageDocs) {
 async function fetchDocumentsByType(type, sortField, sortDirection = "asc") {
   const options = {};
   if (sortField) {
-    options.orderings = `my.${type}.${sortField} ${sortDirection}`;
+    options.orderings = `[my.${type}.${sortField} ${sortDirection}]`;
   }
 
   const api = await getApi();
   return api.query(Prismic.Predicates.at("document.type", type), options);
+}
+
+async function fetchDocumentsByTypeAndTags(
+  type,
+  tags,
+  options
+) {
+  const api = await getApi();
+  return api.query(
+    [
+      Prismic.Predicates.at("document.type", type),
+      Prismic.Predicates.at("document.tags", tags),
+    ],
+    options
+  );
 }
 
 async function fetchDocumentById(id) {

@@ -1,5 +1,4 @@
-import { getHomePage, getPages, getProjects } from "./services/cms-service";
-import { getPhotos } from "./services/photos-service";
+import { getHomePage, getPages, getPhotos, getProjects } from "./services/cms-service";
 
 export default async () => {
   const [
