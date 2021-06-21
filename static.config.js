@@ -46,6 +46,9 @@ export default {
     codewarrior: {
       url: "https://codewarrior.jaygordo.com/",
     },
+    phasewarrior: {
+      url: "https://phase-warrior.jaygordo.com/",
+    },
   }),
   plugins: [
     [

@@ -23,6 +23,10 @@ export default async () => {
       template: "src/containers/CodewarriorGame/CodewarriorGame",
     },
     {
+      path: "/phasewarrior",
+      template: "src/containers/CodewarriorGame/PhaseWarriorGame",
+    },
+    {
       path: "/photos",
       ...photosRoutesData,
     },
