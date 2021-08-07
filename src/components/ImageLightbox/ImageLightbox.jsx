@@ -118,12 +118,20 @@ export default ({ className, image, images, onClose }) => {
         {modalImage && (
           <Hammer onSwipe={handleImageSwipe}>
             <a href={modalImage.url} target="_blank" rel="noreferrer">
-              <img
-                src={modalImage.url}
-                alt={modalImage.caption}
-                ref={imgRef}
-                className={styles["image"]}
-              />
+              {!modalImage.video && (
+                <img
+                  src={modalImage.url}
+                  alt={modalImage.caption}
+                  ref={imgRef}
+                  className={styles["image"]}
+                />
+              )}
+              {modalImage.video && (
+                <video autoPlay={true} loop={true} ref={imgRef}>
+                  <source src={modalImage.video} type="video/mp4" />
+                  Bah, yist vidjas nay est schpoortada.
+                </video>
+              )}
             </a>
           </Hammer>
         )}

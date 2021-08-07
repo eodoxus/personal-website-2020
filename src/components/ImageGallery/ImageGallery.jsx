@@ -68,6 +68,7 @@ export default ({ className, images, onPaginate }) => {
               key={`${image.caption}-${idx}`}
               caption={image.caption}
               url={image.url}
+              video={image.video}
               onClick={() => handleThumbnailClick(image)}
             />
           ))}

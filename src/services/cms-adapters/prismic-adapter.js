@@ -8,6 +8,7 @@ const DOC_TYPES = {
   image: "image",
   page: "page",
   project: "project",
+  video: "video",
 };
 const SLICE_TYPES = {
   imageGallery: "image_gallery",
@@ -52,11 +53,11 @@ export async function getPhotos(page = 1) {
   const options = {
     page,
     pageSize: 5,
-    orderings: '[document.first_publication_date desc]'
+    orderings: "[document.first_publication_date desc]",
   };
 
   const resp = await fetchDocumentsByTypeAndTags(
-    DOC_TYPES.image,
+    [DOC_TYPES.image, DOC_TYPES.video],
     ["photos"],
     options
   );
@@ -74,8 +75,9 @@ export async function getPhotos(page = 1) {
       caption: image.title,
       url: image.url,
       tags: image.tags,
+      video: image.video,
     })),
-    next: resp.next_page ? resp.page + 1 : undefined
+    next: resp.next_page ? resp.page + 1 : undefined,
   };
 }
 
@@ -100,14 +102,23 @@ export async function getProjects() {
   }));
 }
 
-function extractImages(imageDocs, defaultTitle = "Untitled") {
-  return imageDocs
-    .filter((imageDoc) => !!imageDoc)
-    .map((imageDoc) => ({
-      tags: imageDoc.tags,
-      title: get(imageDoc, "data.title[0].text", defaultTitle),
-      url: get(imageDoc, "data.image.url", IMAGE_PLACEHOLDER),
-    }));
+function extractImages(docs, defaultTitle = "Untitled") {
+  return docs
+    .filter((doc) => !!doc)
+    .map((doc) =>
+      doc.type === DOC_TYPES.image
+        ? {
+            tags: doc.tags,
+            title: get(doc, "data.title[0].text", defaultTitle),
+            url: get(doc, "data.image.url", IMAGE_PLACEHOLDER),
+          }
+        : {
+            tags: doc.tags,
+            title: get(doc, "data.title[0].text", defaultTitle),
+            url: get(doc, "data.poster.url", IMAGE_PLACEHOLDER),
+            video: get(doc, "data.video.url"),
+          }
+    );
 }
 
 async function fetchDocumentsByType(type, sortField, sortDirection = "asc") {
@@ -120,15 +131,14 @@ async function fetchDocumentsByType(type, sortField, sortDirection = "asc") {
   return api.query(Prismic.Predicates.at("document.type", type), options);
 }
 
-async function fetchDocumentsByTypeAndTags(
-  type,
-  tags,
-  options
-) {
+async function fetchDocumentsByTypeAndTags(type, tags, options) {
   const api = await getApi();
   return api.query(
     [
-      Prismic.Predicates.at("document.type", type),
+      Prismic.Predicates.any(
+        "document.type",
+        Array.isArray(type) ? type : [type]
+      ),
       Prismic.Predicates.at("document.tags", tags),
     ],
     options
