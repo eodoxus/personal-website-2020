@@ -12,9 +12,17 @@ $color-controls--hover: #999;
 
   .caption {
     position: absolute;
-    bottom: 10%;
+    bottom: $gutter-xs;
+    left: $gutter-xs;
+    background-color: $color-caption--background;
+    border-radius: 4px;
+    padding: $gutter-xs $gutter-sm;
     color: $color-font-inverse;
-    left: $gutter-sm;
+    $font-weight: $font-weight--bold;
+
+    p {
+      margin-bottom: 0;
+    }
   }
 
   .close-button {

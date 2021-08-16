@@ -53,7 +53,7 @@ export async function getPhotos(page = 1) {
   const options = {
     page,
     pageSize: 5,
-    orderings: "[document.first_publication_date desc]",
+    orderings: "[my.image.date desc, my.video.date desc, document.first_publication_date desc]",
   };
 
   const resp = await fetchDocumentsByTypeAndTags(
@@ -76,6 +76,7 @@ export async function getPhotos(page = 1) {
       url: image.url,
       tags: image.tags,
       video: image.video,
+      date: image.date,
     })),
     next: resp.next_page ? resp.page + 1 : undefined,
   };
@@ -111,12 +112,14 @@ function extractImages(docs, defaultTitle = "Untitled") {
             tags: doc.tags,
             title: get(doc, "data.title[0].text", defaultTitle),
             url: get(doc, "data.image.url", IMAGE_PLACEHOLDER),
+            date: get(doc, "data.date"),
           }
         : {
             tags: doc.tags,
             title: get(doc, "data.title[0].text", defaultTitle),
             url: get(doc, "data.poster.url", IMAGE_PLACEHOLDER),
             video: get(doc, "data.video.url"),
+            date: get(doc, "data.date"),
           }
     );
 }

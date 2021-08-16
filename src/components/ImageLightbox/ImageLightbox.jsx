@@ -7,6 +7,7 @@ import { formatDate } from "../../helpers";
 
 import styles from "./ImageLightbox.module.scss";
 
+const IMG_PLAY_BUTTON = "/img/play_button.png";
 const DURATION_ANIMATION = 250;
 const SWIPE_LEFT = 2;
 const SWIPE_RIGHT = 4;
@@ -15,9 +16,11 @@ export default ({ className, image, images, onClose }) => {
   const modalRef = useRef();
   const imgRef = useRef();
   const [curIdx, setCurIdx] = useState(images.findIndex((i) => i === image));
+  const [isLoading, setIsLoading] = useState(false);
   const [modalImage, setModalImage] = useState(image);
 
   function animateTransition(direction) {
+    setIsLoading(true);
     return new Promise((resolve) => {
       const className =
         direction === SWIPE_LEFT
@@ -29,6 +32,7 @@ export default ({ className, image, images, onClose }) => {
       setTimeout(() => {
         imgRef.current.classList.remove(className);
         imgRef.current.classList.remove(styles.transition);
+        setIsLoading(false);
         resolve();
       }, DURATION_ANIMATION);
     });
@@ -117,22 +121,27 @@ export default ({ className, image, images, onClose }) => {
       <div ref={modalRef} className={styles["image-viewport"]}>
         {modalImage && (
           <Hammer onSwipe={handleImageSwipe}>
-            <a href={modalImage.url} target="_blank" rel="noreferrer">
-              {!modalImage.video && (
-                <img
-                  src={modalImage.url}
-                  alt={modalImage.caption}
-                  ref={imgRef}
-                  className={styles["image"]}
-                />
-              )}
-              {modalImage.video && (
-                <video autoPlay={true} loop={true} ref={imgRef}>
-                  <source src={modalImage.video} type="video/mp4" />
-                  Bah, yist vidjas nay est schpoortada.
-                </video>
-              )}
-            </a>
+              <a href={modalImage.url} target="_blank" rel="noreferrer">
+                {modalImage.video && !isLoading ? (
+                  <video
+                    autoPlay={true}
+                    className={styles.image}
+                    loop={true}
+                    poster={IMG_PLAY_BUTTON}
+                    ref={imgRef}
+                  >
+                    <source src={modalImage.video} type="video/mp4" />
+                    Bah, videos aren't supported in your browser :(
+                  </video>
+                ) : (
+                  <img
+                    src={modalImage.url}
+                    alt={modalImage.caption}
+                    ref={imgRef}
+                    className={styles.image}
+                  />
+                )}
+              </a>
           </Hammer>
         )}
       </div>
@@ -150,7 +159,7 @@ export default ({ className, image, images, onClose }) => {
       </div>
       <div className={styles.caption}>
         {modalImage.caption && <p>{modalImage.caption}</p>}
-        {formatDate(modalImage.date) && <p>{formatDate(modalImage.date)}</p>}
+        {modalImage.date && <p>{formatDate(modalImage.date)}</p>}
       </div>
     </div>
   );
