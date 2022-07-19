@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/jgordonwaybetter
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jaygordo.com
+  * I am jgordonwaybetter (https://keybase.io/jgordonwaybetter) on keybase.
+  * I have a public key ASCfHJ8g_NNNvVhzEizahmc9PdMQ7IGg2GdVP_Ew0kD9Vgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01209f1c9f20fcd34dbd5873122cda86673d3dd310ec81a0d867553ff130d240fd560a",
+      "host": "keybase.io",
+      "kid": "01209f1c9f20fcd34dbd5873122cda86673d3dd310ec81a0d867553ff130d240fd560a",
+      "uid": "cc61ade75f1652ef998969c955fef919",
+      "username": "jgordonwaybetter"
+    },
+    "merkle_root": {
+      "ctime": 1658255986,
+      "hash": "3e9d30f2a9da3e893200ffdf6387a0d1b431ad8a98e5c9def1a460879a379c82925a8b19d379965ec594363b7ce3b09038a7ad12bc1c12267398e78d00adf1e1",
+      "hash_meta": "7be9004a1b744e5db88591dadec83425049380daca542243ed2d4225bc16c26f",
+      "seqno": 22876886
+    },
+    "service": {
+      "entropy": "qmY5mD8XADE+1n7mOwZfZH/U",
+      "hostname": "jaygordo.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.0.1"
+  },
+  "ctime": 1658256019,
+  "expire_in": 504576000,
+  "prev": "bfc93a3b67330017e51706a555c5991167895df94e6659389bb3374b2a7709a9",
+  "seqno": 4,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgnxyfIPzTTb1YcxIs2oZnPT3TEOyBoNhnVT/xMNJA/VYKp3BheWxvYWTESpcCBMQgv8k6O2czABflFwalVcWZEWeJXflOZlk4m7M3Syp3CanEIHmJiCFaEGvxclEzTQVo6QoiXGiJiFgRXYNpzlbEjWx1AgHCo3NpZ8RAceQ9nIprBnmk/VYrpDIUkW9/V4RDA4/tpiQeMrWpNbVACoS+GmOA1p9aPXPBjMP8dSF7+5Mcx3Cr8+yctFzYCahzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIHALUBKhc0hlV1O6gQH3Xo1fLmMzEQowjqjPW2Iiemd1o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jgordonwaybetter
+
+==================================================================
